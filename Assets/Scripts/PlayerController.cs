@@ -32,27 +32,6 @@ public class PlayerController : MonoBehaviour {
     }
 	
 	void FixedUpdate () {
-        if (_launched)
-        {
-            //if (Mathf.Abs(_speed) < Mathf.Abs(Speed))
-            //{
-            //    _speed -= Speed / Acceleration;
-            //}
-            //else if (Mathf.Abs(_speed) < 10) // Mathf.Abs(Speed))
-            //{
-            //    _speed = 10;// Speed;
-            //}
-            //if (_direction.y > -1) _direction.y -= 1/Acceleration;
-            //else _direction.y = -1;
-            //if (Mathf.Abs(_direction.x) > 0.2) _direction.x += -1 * Mathf.Sign(_direction.x) * (1 / (Acceleration));
-            //else _direction.x = Mathf.Sign(_direction.x) * 0.2f;
-            //Debug.Log(_direction);
-
-            _direction = _direction + Physics2D.gravity/3;// * rb.mass;
-
-
-            rb.velocity = _direction;
-        }
     }
 
     public void OnMouseDown()
@@ -88,6 +67,7 @@ public class PlayerController : MonoBehaviour {
             //Debug.Log("Direction: " + _direction);
             _launched = true;
             _direction *= Speed;
+            rb.velocity = _direction;//+ Physics2D.gravity * rb.mass
             lr.enabled = false;
         }
     }
