@@ -118,15 +118,12 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-		Debug.Log ("On trigger enter");
         rb.velocity = Vector3.zero;
-		Debug.Log ("Tag: " + other.gameObject.tag);
-        if (other.gameObject.tag.Equals("Wall"))
+        if (other.gameObject.CompareTag("Wall"))
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             _launched = false;
             _speed = Speed;
-			Debug.Log ("On trigger enter hit wall");
         }
     }
 }
