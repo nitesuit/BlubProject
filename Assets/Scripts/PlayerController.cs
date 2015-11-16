@@ -119,11 +119,18 @@ public class PlayerController : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         rb.velocity = Vector3.zero;
-        if (other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("walls"))
         {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             _launched = false;
             _speed = Speed;
+        }
+
+        if(transform.parent!=null && other.CompareTag("Wall") && transform.parent.CompareTag("Gear"))
+        {
+            //GetComponentInParent<EdgeCollider2D>().enabled = false;
+            transform.parent = null;
+            //rb.velocity = new Vector3(0, 100, 0);
         }
     }
 }
